@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header & Nav */
+nav {
+  background: #111;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+/* General Sections */
+section {
+  width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Section 1: Linear Gradient & Parallax */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://picsum.photos/1200/800');
+  background-attachment: fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  border-bottom: 2px solid #fff;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Section 2: Radial Gradient */
+.overview {
+  background: radial-gradient(circle, #2563eb, #1e3a8a);
+  color: #ffffff;
+}
+
+.overview h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Section 3: Parallax Background */
+.culture {
+  background-image: url('https://picsum.photos/1200/801');
+  background-attachment: fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.culture h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  background: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+}

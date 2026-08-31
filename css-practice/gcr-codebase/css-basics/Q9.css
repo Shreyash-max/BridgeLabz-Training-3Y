@@ -1,0 +1,35 @@
+body {
+  background-color: #fefec6;
+  font-family: 'Times New Roman', serif;
+  padding: 30px;
+}
+
+/* CSS Multi-Column Structure */
+.paper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border: 1px solid #ccc;
+  column-count: 3;
+  column-gap: 30px;
+  text-align: justify;
+}
+
+/* Spanning Title Across Columns */
+h1 {
+  column-span: all;
+  text-align: center;
+  font-size: 3rem;
+  border-bottom: 2px solid #000;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+/* Floated Image */
+.article-img {
+  float: left;
+  width: 120px;
+  margin: 0 10px 10px 0;
+  border: 1px solid #444;
+}

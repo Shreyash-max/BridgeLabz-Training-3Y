@@ -1,0 +1,72 @@
+/* Reset & General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f4f6f9;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+/* Fixed Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  z-index: 1000;
+}
+
+nav a {
+  color: #f8fafc;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Main Content - Units: px, em, %, vh, rem */
+main {
+  margin-top: 5rem;
+  min-height: calc(100vh - 9rem);
+  padding: 2em 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5em;
+  border: 4px solid #3b82f6;
+}
+
+.bio {
+  max-width: 600px;
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+/* Footer Positioned at Bottom */
+footer {
+  height: 4rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

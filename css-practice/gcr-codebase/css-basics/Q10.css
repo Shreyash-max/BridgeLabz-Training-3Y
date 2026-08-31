@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+/* Sticky Header & RGBA Color */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+/* Hero Section with Relative Positioning & Gradient Overlay */
+.hero {
+  position: relative;
+  height: 70vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1200/600');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text {
+  color: white;
+  text-align: center;
+}
+
+/* About Section (2 Columns) */
+.about {
+  display: flex;
+  padding: 50px 30px;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-col {
+  flex: 1;
+}
+
+.about-col img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Services Section (Flexbox & Outline Property) */
+.services {
+  display: flex;
+  gap: 20px;
+  padding: 50px 30px;
+  background: #f8fafc;
+}
+
+.service-box {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #cbd5e1;
+  outline: 2px solid #3b82f6;
+  border-radius: 6px;
+  background: white;
+}
+
+/* Contact Form with Focus Outline */
+.contact {
+  padding: 50px 30px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  outline: 2px solid transparent;
+}
+
+input:focus {
+  outline-color: #2563eb;
+}
+
+/* Footer */
+footer {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
