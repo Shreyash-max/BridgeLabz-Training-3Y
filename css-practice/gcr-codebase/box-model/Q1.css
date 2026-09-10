@@ -1,0 +1,71 @@
+/* Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 25px;
+    background: #222;
+    color: white;
+}
+
+/* Flexbox aligns boxes horizontally */
+.boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+/* Common box styling */
+.box {
+    width: 210px;
+    min-height: 170px;
+    background: white;
+    text-align: center;
+    transition: border-color 0.4s ease;
+}
+
+.box:hover {
+    border-color: #e63946;
+}
+
+/* Different border styles */
+.solid {
+    border: 5px solid #333;
+    padding: 20px;
+}
+
+.dashed {
+    border: 5px dashed #333;
+    padding: 30px;
+}
+
+.double {
+    border: 8px double #333;
+    padding: 15px;
+}
+
+.groove {
+    border: 8px groove #333;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #222;
+    color: white;
+}

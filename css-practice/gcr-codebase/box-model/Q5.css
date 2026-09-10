@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #222;
+}
+
+header,
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1e293b;
+    color: white;
+}
+
+.content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+/* Attribute selector: selects text inputs */
+input[type="text"] {
+    border: 3px solid #2563eb;
+}
+
+/* Attribute selector: href beginning with https */
+a[href^="https"] {
+    color: green;
+}
+
+/* :hover pseudo-class */
+a:hover {
+    text-decoration: underline;
+}
+
+/* :focus pseudo-class */
+input:focus {
+    outline: 3px solid orange;
+}
+
+/* :nth-child() pseudo-class */
+.items li:nth-child(odd) {
+    background: #dbeafe;
+}
+
+/* Descendant combinator */
+.items li {
+    padding: 10px;
+}
+
+/* Child combinator > */
+.combinators > p {
+    font-weight: bold;
+}
+
+/* Adjacent sibling + */
+.combinators p + p {
+    color: blue;
+}
+
+/* General sibling ~ */
+.combinators p ~ span {
+    color: red;
+}
+
+/* ::before pseudo-element */
+h2::before {
+    content: "★ ";
+}
+
+/* ::after pseudo-element */
+h2::after {
+    content: " ★";
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+}
+
+a {
+    margin-right: 20px;
+}

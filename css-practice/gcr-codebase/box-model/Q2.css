@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px;
+    background: #1e293b;
+    color: white;
+}
+
+/* Flexbox centers boxes */
+.container {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Common box */
+.box {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    min-height: 120px;
+    max-width: 300px;
+}
+
+/* px units */
+.box1 {
+    width: 200px;
+    height: 150px;
+    background: #2563eb;
+}
+
+/* % and vh units */
+.box2 {
+    width: 30%;
+    height: 20vh;
+    background: #16a34a;
+}
+
+/* em and overflow */
+.box3 {
+    width: 18em;
+    height: 10em;
+    background: #dc2626;
+    overflow: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #1e293b;
+    color: white;
+}

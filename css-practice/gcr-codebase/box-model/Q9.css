@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e2e8f0;
+}
+
+header,
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1e293b;
+    color: white;
+}
+
+/* Form container */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px #999;
+}
+
+.form-container h2 {
+    text-align: center;
+}
+
+/* Uniform form spacing */
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #64748b;
+    border-radius: 7px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Different outline styles */
+input {
+    outline: 2px solid transparent;
+    outline-offset: 3px;
+}
+
+textarea {
+    outline: 2px dashed transparent;
+    outline-offset: 4px;
+}
+
+/* Focus selector changes outline */
+input:focus {
+    outline: 3px solid #2563eb;
+}
+
+textarea:focus {
+    outline: 3px dashed #16a34a;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #1d4ed8;
+}

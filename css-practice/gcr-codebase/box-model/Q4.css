@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+}
+
+/* Header with text shadow */
+header {
+    text-align: center;
+    padding: 25px;
+    background: #1f2937;
+    color: white;
+}
+
+header h1 {
+    text-shadow: 3px 3px 5px #000;
+}
+
+/* Flexbox layout */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 70px 30px;
+}
+
+.card {
+    width: 280px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+/* Different shadow styles */
+.shadow1 {
+    box-shadow: 0 5px 15px #aaa;
+}
+
+.shadow2 {
+    box-shadow: 0 10px 25px #777;
+}
+
+.shadow3 {
+    box-shadow: 5px 5px 15px #999,
+                -5px -5px 15px #ddd;
+}
+
+/* Hover lifts the card */
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 35px #777;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #1f2937;
+    color: white;
+}
