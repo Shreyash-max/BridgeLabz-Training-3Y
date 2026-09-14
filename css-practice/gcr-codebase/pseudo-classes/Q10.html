@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mini User Interface</title>
+
+    <link rel="stylesheet" href="q10.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Student Profile</h1>
+    </header>
+
+    <!-- Main content -->
+    <main>
+
+        <section class="profile-card">
+
+            <!-- Small image -->
+            <div class="image-section">
+                <img
+                    src="https://picsum.photos/160"
+                    alt="Student profile image"
+                >
+            </div>
+
+            <!-- Form content -->
+            <div class="form-section">
+
+                <h2>Registration Form</h2>
+
+                <form>
+
+                    <!-- Name -->
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <!-- Email -->
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <!-- Course -->
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <select id="course">
+
+                        <option>
+                            Computer Science
+                        </option>
+
+                        <option>
+                            Data Science
+                        </option>
+
+                        <option>
+                            Information Technology
+                        </option>
+
+                    </select>
+
+                    <!-- Buttons -->
+                    <div class="form-buttons">
+
+                        <button type="submit">
+                            Submit
+                        </button>
+
+                        <button type="reset">
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Assignment 8 - Mini User Interface</p>
+    </footer>
+
+</body>
+</html>

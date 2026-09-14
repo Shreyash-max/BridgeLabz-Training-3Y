@@ -1,0 +1,122 @@
+/* Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #222;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 25px;
+    background-color: #243b53;
+    color: white;
+}
+
+/* Flexbox layout */
+.container {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    padding: 40px;
+}
+
+/* Individual example cards */
+.example {
+    width: 30%;
+    min-width: 250px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover pseudo-class */
+.example a {
+    display: inline-block;
+    padding: 10px;
+    color: #1769aa;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.example a:hover {
+    color: white;
+    background-color: #d6336c;
+    border-radius: 6px;
+}
+
+/* Button styling */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1769aa;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hover */
+button:hover {
+    background-color: #0d47a1;
+}
+
+/* Focus */
+button:focus {
+    outline: 3px solid #ffb703;
+}
+
+/* Active */
+button:active {
+    transform: scale(0.95);
+}
+
+/* nth-child */
+li {
+    padding: 8px;
+    margin: 5px 0;
+}
+
+/* Select second list item */
+li:nth-child(2) {
+    background-color: #dff6e9;
+    color: #087443;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #243b53;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 800px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .example {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .example {
+        width: 100%;
+    }
+}

@@ -1,0 +1,92 @@
+/* Universal box sizing */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #222;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 25px;
+
+    background-color: #343a40;
+    color: white;
+}
+
+/* Flexbox comparison */
+.comparison {
+    min-height: 65vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 40px;
+}
+
+/* Common box */
+.box {
+    width: 350px;
+    min-height: 250px;
+
+    padding: 40px;
+
+    border: 10px solid;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+/* Default content-box */
+.default-box {
+    /*
+        Override universal box-sizing.
+        Here width applies only to content.
+    */
+    box-sizing: content-box;
+
+    background-color: #dbeafe;
+    border-color: #2563eb;
+}
+
+/* Border-box */
+.border-box {
+    /*
+        Width includes content + padding + border.
+    */
+    box-sizing: border-box;
+
+    background-color: #dcfce7;
+    border-color: #16a34a;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+
+    background-color: #343a40;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 750px) {
+
+    .comparison {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 90%;
+        box-sizing: border-box;
+    }
+}

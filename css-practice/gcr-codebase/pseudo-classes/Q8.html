@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Box Sizing Comparison</title>
+
+    <link rel="stylesheet" href="q8.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Box-Sizing Comparison</h1>
+    </header>
+
+    <main class="comparison">
+
+        <!-- Default content-box -->
+        <section class="box default-box">
+
+            <h2>content-box</h2>
+
+            <p>
+                This box uses the default
+                <strong>content-box</strong> model.
+            </p>
+
+            <p>
+                Padding and border are added
+                outside the declared width.
+            </p>
+
+        </section>
+
+        <!-- border-box -->
+        <section class="box border-box">
+
+            <h2>border-box</h2>
+
+            <p>
+                This box uses
+                <strong>border-box</strong>.
+            </p>
+
+            <p>
+                Padding and border are included
+                inside the declared width.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            Both boxes have the same declared width and padding.
+        </p>
+    </footer>
+
+</body>
+</html>

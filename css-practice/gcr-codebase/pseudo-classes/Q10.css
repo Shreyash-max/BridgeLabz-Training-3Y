@@ -1,0 +1,204 @@
+/* Apply border-box everywhere */
+* {
+    box-sizing: border-box;
+}
+
+/* Basic page */
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f1f5f9;
+
+    color: #1e293b;
+}
+
+/* Header */
+header {
+    text-align: center;
+
+    padding: 25px;
+
+    background-color: #0f172a;
+
+    color: white;
+}
+
+/* Main Flexbox */
+main {
+    min-height: 65vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+/* Main card */
+.profile-card {
+    width: min(850px, 100%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 35px;
+
+    background-color: white;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Image */
+.image-section img {
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #2563eb;
+}
+
+/* Form section */
+.form-section {
+    flex: 1;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+}
+
+/* Input and select */
+input,
+select {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 5px;
+
+    border: 1px solid #94a3b8;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+/* Focus effect */
+input:focus,
+select:focus {
+    outline: 3px solid #bfdbfe;
+
+    border-color: #2563eb;
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+.form-buttons button {
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Second button */
+.form-buttons button:last-child {
+    background-color: #64748b;
+}
+
+/* Hover effect */
+.form-buttons button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Active effect */
+.form-buttons button:active {
+    transform: scale(0.96);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+
+    padding: 20px;
+
+    background-color: #0f172a;
+
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+
+    .profile-card {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .image-section img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .form-section {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* Small screen */
+@media (max-width: 450px) {
+
+    main {
+        padding: 15px;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+}

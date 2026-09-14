@@ -1,0 +1,140 @@
+/* Basic page */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    /* Soft gradient */
+    background: linear-gradient(
+        135deg,
+        #dbeafe,
+        #fce7f3
+    );
+
+    color: #222;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 25px;
+
+    background-color: #1e293b;
+    color: white;
+}
+
+/* Main Flexbox */
+.main-container {
+    min-height: 65vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+/* Card */
+.card {
+    width: 420px;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+/* Inputs */
+.card input,
+.card select {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #b6c2cf;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+/* Focus effect */
+.card input:focus,
+.card select:focus {
+    outline: 3px solid #bfdbfe;
+    border-color: #2563eb;
+}
+
+/* Button container */
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Buttons */
+.buttons button {
+    flex: 1;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2563eb;
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.buttons button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Active */
+.buttons button:active {
+    transform: scale(0.97);
+}
+
+/* Reset button */
+.buttons .reset {
+    background-color: #64748b;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+
+    background-color: #1e293b;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .card {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+}

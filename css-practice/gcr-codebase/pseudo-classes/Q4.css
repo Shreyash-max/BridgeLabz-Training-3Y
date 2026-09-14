@@ -1,0 +1,101 @@
+/* Universal selector */
+* {
+    box-sizing: border-box;
+}
+
+/* Element selector */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #222;
+}
+
+/* Semantic header */
+header {
+    text-align: center;
+    padding: 25px;
+    background-color: #102a43;
+    color: white;
+}
+
+/* Main spacing */
+main {
+    padding: 40px;
+}
+
+/* Class selector */
+.card {
+    max-width: 750px;
+    margin: auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Element selector */
+p {
+    line-height: 1.6;
+}
+
+/* Class selector */
+.special {
+    color: #087f5b;
+    font-weight: bold;
+}
+
+/* ID selector */
+#unique {
+    color: #c92a2a;
+    font-size: 20px;
+}
+
+/* Attribute selector */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+
+    border: 2px solid #829ab1;
+    border-radius: 6px;
+}
+
+/* Child combinator > */
+ul > li {
+    margin: 8px;
+    color: #1864ab;
+}
+
+/* Descendant combinator */
+.card div p {
+    font-style: italic;
+    background-color: #edf2ff;
+    padding: 10px;
+}
+
+/* Adjacent sibling + */
+h2 + p {
+    background-color: #fff3bf;
+    padding: 10px;
+}
+
+/* General sibling ~ */
+h2 ~ p {
+    border-left: 4px solid #f59f00;
+    padding-left: 10px;
+}
+
+/* Link */
+a {
+    color: #1864ab;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #102a43;
+    color: white;
+}

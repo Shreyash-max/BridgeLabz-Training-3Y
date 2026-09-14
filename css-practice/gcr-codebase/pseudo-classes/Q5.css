@@ -1,0 +1,103 @@
+/* Basic styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f6f8fa;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 25px;
+    background-color: #343a40;
+    color: white;
+}
+
+/* Flexbox */
+.button-container {
+    min-height: 65vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Common button styling */
+button {
+    padding: 14px 28px;
+
+    border-radius: 8px;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.3s ease;
+}
+
+/* Primary */
+.primary {
+    background-color: #1971c2;
+    color: white;
+    border: 2px solid #1971c2;
+}
+
+/* Secondary */
+.secondary {
+    background-color: #20c997;
+    color: white;
+    border: 2px solid #20c997;
+}
+
+/* Outline */
+.outline {
+    background-color: white;
+    color: #1971c2;
+    border: 2px solid #1971c2;
+}
+
+/* Hover */
+.primary:hover,
+.secondary:hover,
+.outline:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Active */
+.primary:active,
+.secondary:active,
+.outline:active {
+    transform: scale(0.95);
+}
+
+/* Focus */
+button:focus {
+    outline: 3px solid #ffd43b;
+    outline-offset: 3px;
+}
+
+/* Disabled pseudo-class */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+}
