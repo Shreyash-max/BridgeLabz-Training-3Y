@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.typography-section {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 50px 30px;
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 25px;
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+}
+
+/* Better readability on small screens */
+@media (max-width: 700px) {
+    .typography-section {
+        margin: 30px 15px;
+        padding: 30px 20px;
+    }
+
+    p {
+        line-height: 1.8;
+    }
+}

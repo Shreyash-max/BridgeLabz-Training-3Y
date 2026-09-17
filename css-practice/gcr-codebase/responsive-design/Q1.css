@@ -1,0 +1,98 @@
+/* Basic page styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: #222;
+    color: white;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+.gallery {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    
+    /* Required responsive Grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.image-card {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+.image-card img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+
+    /* Smooth filter removal */
+    transition: filter 0.5s ease;
+}
+
+.image-card figcaption {
+    padding: 12px;
+    font-weight: bold;
+}
+
+/* Different filters */
+.blur {
+    filter: blur(3px);
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.sepia {
+    filter: sepia(100%);
+}
+
+.brightness {
+    filter: brightness(150%);
+}
+
+.contrast {
+    filter: contrast(180%);
+}
+
+.hue {
+    filter: hue-rotate(120deg);
+}
+
+/* Remove filter on hover */
+.image-card:hover img {
+    filter: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+/* One column below 600px */
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
