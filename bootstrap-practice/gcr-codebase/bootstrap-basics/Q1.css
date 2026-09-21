@@ -1,0 +1,17 @@
+.hero-section {
+    background: linear-gradient(135deg, #eef5ff, #ffffff);
+    padding: 60px 0;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.hero-section h1 {
+    color: #172554;
+}
+
+.hero-section img {
+    max-height: 400px;
+    object-fit: cover;
+}

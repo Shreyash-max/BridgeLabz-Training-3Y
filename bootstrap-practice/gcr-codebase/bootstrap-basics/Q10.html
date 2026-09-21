@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ExploreWorld Travel Agency</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="q10.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="#">
+                ExploreWorld
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#travelNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="travelNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Destinations</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Packages</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<main>
+
+<section class="container py-5">
+
+    <h1 class="text-center fw-bold mb-4">
+        Explore Your Dream Destination
+    </h1>
+
+    <!-- Bootstrap Carousel -->
+    <div id="travelCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+
+            <button type="button"
+                    data-bs-target="#travelCarousel"
+                    data-bs-slide-to="0"
+                    class="active">
+            </button>
+
+            <button type="button"
+                    data-bs-target="#travelCarousel"
+                    data-bs-slide-to="1">
+            </button>
+
+            <button type="button"
+                    data-bs-target="#travelCarousel"
+                    data-bs-slide-to="2">
+            </button>
+
+        </div>
+
+        <div class="carousel-inner rounded shadow">
+
+            <!-- data-bs-interval sets custom slide time -->
+            <div class="carousel-item active"
+                 data-bs-interval="3000">
+
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100"
+                     alt="Maldives">
+
+                <div class="carousel-caption">
+                    <h2>Maldives</h2>
+                    <p>Relax beside crystal-clear tropical waters.</p>
+                </div>
+
+            </div>
+
+            <div class="carousel-item"
+                 data-bs-interval="4000">
+
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100"
+                     alt="Bali">
+
+                <div class="carousel-caption">
+                    <h2>Bali</h2>
+                    <p>Discover beautiful beaches and rich culture.</p>
+                </div>
+
+            </div>
+
+            <div class="carousel-item"
+                 data-bs-interval="5000">
+
+                <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100"
+                     alt="Switzerland">
+
+                <div class="carousel-caption">
+                    <h2>Switzerland</h2>
+                    <p>Experience breathtaking mountains and nature.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#travelCarousel"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#travelCarousel"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+    </div>
+
+</section>
+
+<section class="container pb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <h3 class="text-center">
+                Booking Completion
+            </h3>
+
+            <div class="progress mt-3"
+                 role="progressbar"
+                 aria-label="Booking completion"
+                 aria-valuenow="70"
+                 aria-valuemin="0"
+                 aria-valuemax="100">
+
+                <!-- progress-bar-striped + animated required -->
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                     style="width: 70%">
+                    70%
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="bg-dark text-white text-center p-4">
+
+    <h5>ExploreWorld Travel Agency</h5>
+
+    <p class="mb-1">
+        Email: info@exploreworld.com
+    </p>
+
+    <p class="mb-0">
+        Phone: +91 98765 43210
+    </p>
+
+</footer>
+
+<!-- Bootstrap JS required for Carousel -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>
