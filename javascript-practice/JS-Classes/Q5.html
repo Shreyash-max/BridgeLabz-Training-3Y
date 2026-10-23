@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        input { display: block; margin: 10px 0; padding: 9px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Movie Ticket Booking</h2>
+
+    <form id="bookingForm" novalidate>
+        <input id="name" placeholder="Your Name" required>
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="seats" type="number" placeholder="Seats (1-10)"
+               min="1" max="10" required>
+        <button type="submit">Book Ticket</button>
+    </form>
+
+    <p id="message" class="error"></p>
+    <div id="ticket"></div>
+
+    <script>
+        const form = document.getElementById("bookingForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const seats = Number(document.getElementById("seats").value);
+
+            const validName = /^[A-Za-z ]+$/.test(name);
+            const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const validSeats = Number.isInteger(seats) &&
+                               seats >= 1 && seats <= 10;
+
+            const message = document.getElementById("message");
+            const ticket = document.getElementById("ticket");
+
+            ticket.textContent = "";
+
+            if (!validName || !validEmail || !validSeats) {
+                message.textContent =
+                    "Enter a valid name, email and seat count (1-10).";
+                return;
+            }
+
+            message.textContent = "";
+
+            // Store booking details in an object
+            const booking = { name, email, seats };
+
+            ticket.innerHTML = `
+                <h3>Booking Confirmed!</h3>
+                <p>Name: ${booking.name}</p>
+                <p>Email: ${booking.email}</p>
+                <p>Seats: ${booking.seats}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
