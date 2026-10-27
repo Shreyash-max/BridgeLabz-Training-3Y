@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q3 - Multi-Step Form</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+</head>
+<body><main class="container">
+  <h1>Registration Form</h1><p id="stepLabel">Step 1 of 3</p>
+  <form id="multiStepForm" novalidate>
+    <section class="step">
+      <label for="name">Name</label><input id="name" name="name" autocomplete="name" required>
+      <p class="error" id="nameError"></p>
+    </section>
+    <section class="step" hidden>
+      <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
+      <p class="error" id="emailError"></p>
+    </section>
+    <section class="step" hidden>
+      <label for="password">Password</label><input id="password" name="password" type="password" minlength="6" required>
+      <p class="error" id="passwordError"></p>
+    </section>
+    <div class="actions"><button id="backButton" type="button" disabled>Back</button><button id="nextButton" type="button">Next</button></div>
+  </form>
+  <section id="summary" hidden><h2>Summary</h2><p id="summaryText"></p><button id="restartButton" type="button">Start Again</button></section>
+</main></body></html>

@@ -1,0 +1,11 @@
+:root { font-family: Arial, sans-serif; }
+body { margin: 0; padding: 30px 16px; min-height: 100vh; box-sizing: border-box; transition: background .2s, color .2s; }
+.container { max-width: 600px; margin: auto; padding: 24px; border-radius: 12px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button { padding: 10px 16px; cursor: pointer; }
+body[data-theme="light"] { background: #f3f5f7; color: #222; }
+body[data-theme="light"] .container { background: white; }
+body[data-theme="dark"] { background: #171717; color: #f5f5f5; }
+body[data-theme="dark"] .container { background: #292929; }
+body[data-theme="blue"] { background: #dceeff; color: #12345a; }
+body[data-theme="blue"] .container { background: #fff; }

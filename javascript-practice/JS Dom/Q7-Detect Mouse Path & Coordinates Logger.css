@@ -1,0 +1,6 @@
+:root { font-family: Arial, sans-serif; color: #222; background: #f4f6f8; }
+body { margin: 0; padding: 24px 16px; }
+.container { max-width: 700px; margin: auto; }
+#trackingBox { width: 400px; height: 400px; max-width: 100%; box-sizing: border-box; position: relative; overflow: hidden; border: 2px solid #333; background: white; cursor: crosshair; }
+#coordinates { font-family: monospace; font-size: 1.1rem; }
+.dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: red; transform: translate(-50%, -50%); pointer-events: none; }

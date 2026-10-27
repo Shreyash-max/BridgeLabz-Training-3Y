@@ -1,0 +1,8 @@
+:root { font-family: Arial, sans-serif; color: #222; background: #f4f6f8; }
+body { margin: 0; padding: 30px 16px; }
+.container { max-width: 600px; margin: auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 18px #0001; }
+textarea { display: block; width: 100%; box-sizing: border-box; margin-top: 10px; padding: 12px; resize: vertical; }
+button { padding: 9px 14px; cursor: pointer; }
+#counter { font-weight: bold; color: #218739; }
+#counter.warning { color: #c18a00; }
+#counter.limit { color: #c62828; }

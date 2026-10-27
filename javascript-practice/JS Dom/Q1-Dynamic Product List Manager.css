@@ -1,0 +1,12 @@
+:root { font-family: Arial, sans-serif; color: #222; background: #f4f6f8; }
+body { margin: 0; padding: 30px 16px; }
+.container { max-width: 620px; margin: auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 18px #0001; }
+form { display: flex; gap: 8px; }
+input { flex: 1; min-width: 0; padding: 10px; }
+button { padding: 9px 12px; cursor: pointer; }
+ul { padding-left: 0; list-style: none; }
+li { display: flex; align-items: center; gap: 8px; padding: 10px; border-bottom: 1px solid #ddd; }
+.product-name { flex: 1; overflow-wrap: anywhere; }
+.edit-input { flex: 1; min-width: 0; padding: 8px; }
+.delete { background: #b42318; color: white; border: 0; border-radius: 4px; }
+.hint { color: #666; font-size: .9rem; }
