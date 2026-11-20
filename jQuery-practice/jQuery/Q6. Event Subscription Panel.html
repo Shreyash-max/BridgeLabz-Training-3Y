@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q6 – Event Subscription Panel</title>
+    <style>
+        :root {
+            --primary: #0077b6;
+            --success: #2a9d8f;
+            --danger: #e63946;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --border: #dee2e6;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        /* Dynamic message container */
+        #notificationArea {
+            min-height: 50px;
+            margin-bottom: 1.5rem;
+        }
+        .alert-message {
+            padding: 0.9rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .alert-success { background: #d4edda; color: #155724; border-left: 5px solid #28a745; }
+        .alert-warning { background: #fff3cd; color: #856404; border-left: 5px solid #ffc107; }
+        .alert-danger { background: #f8d7da; color: #721c24; border-left: 5px solid #dc3545; }
+
+        .status-card {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: #e9ecef;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+        .status-badge.subscribed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-badge.unsubscribed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .global-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+        button {
+            padding: 0.65rem 1.25rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-subscribe { background-color: var(--success); color: white; }
+        .btn-subscribe:hover { background-color: #21867a; }
+        .btn-unsubscribe { background-color: var(--danger); color: white; }
+        .btn-unsubscribe:hover { background-color: #c92a2a; }
+        .btn-add { background-color: var(--primary); color: white; }
+        .btn-add:hover { background-color: #005f73; }
+
+        .add-topic-section {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 0.75rem;
+        }
+        .add-topic-section input {
+            flex: 1;
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .add-topic-section input:focus {
+            border-color: var(--primary);
+        }
+        .topics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .topic-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .topic-card:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+        .topic-info h4 {
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+        .topic-info p {
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+        .btn-remove-topic {
+            background: #f1f3f5;
+            color: #e63946;
+            border: 1px solid #dee2e6;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            border-radius: 4px;
+        }
+        .btn-remove-topic:hover {
+            background: #ffe3e3;
+            border-color: #ffa8a8;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Event Subscription Panel</h1>
+        <p>Dynamic event binding and unbinding with jQuery <code>.on()</code> and <code>.off()</code></p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- Dynamic Alert Container for Requirement 5 -->
+        <section id="notificationArea" aria-live="polite"></section>
+
+        <!-- Global Subscription State Controller -->
+        <section class="status-card">
+            <div>
+                <h3>Global Notification Status:</h3>
+                <span class="status-badge" id="globalStatusBadge">Awaiting Selection</span>
+            </div>
+            <div class="global-buttons">
+                <button id="btnGlobalSubscribe" class="btn-subscribe">Subscribe to Notifications</button>
+                <button id="btnGlobalUnsubscribe" class="btn-unsubscribe">Unsubscribe from Notifications</button>
+            </div>
+        </section>
+
+        <!-- Add Topic Form (Requirement 3) -->
+        <section class="add-topic-section">
+            <input type="text" id="newTopicInput" placeholder="Enter new subscription topic name (e.g., Python Backend, Docker)...">
+            <button id="btnAddTopic" class="btn-add">Add Topic (.on)</button>
+        </section>
+
+        <!-- At least 5 initial topics -->
+        <section class="topics-section">
+            <h3>📑 Your Active Subscription Topics (Click card to check topic status):</h3>
+            <div class="topics-list" id="topicsContainer">
+                <article class="topic-card" data-topic="Artificial Intelligence">
+                    <div class="topic-info">
+                        <h4>1. Artificial Intelligence & Machine Learning</h4>
+                        <p>Weekly updates on LLMs, neural networks, and automated systems.</p>
+                    </div>
+                    <button class="btn-remove-topic" title="Detach event and remove topic">Remove (.off)</button>
+                </article>
+
+                <article class="topic-card" data-topic="Modern Web Frontend">
+                    <div class="topic-info">
+                        <h4>2. Modern Web Frontend Technologies</h4>
+                        <p>Deep dives into jQuery, modern ES6+, React, and accessible UI.</p>
+                    </div>
+                    <button class="btn-remove-topic" title="Detach event and remove topic">Remove (.off)</button>
+                </article>
+
+                <article class="topic-card" data-topic="Cloud & DevOps">
+                    <div class="topic-info">
+                        <h4>3. Cloud Architecture & DevOps</h4>
+                        <p>Best practices in CI/CD pipelines, Docker, Kubernetes, and AWS.</p>
+                    </div>
+                    <button class="btn-remove-topic" title="Detach event and remove topic">Remove (.off)</button>
+                </article>
+
+                <article class="topic-card" data-topic="Cyber Security">
+                    <div class="topic-info">
+                        <h4>4. Cyber Security & Ethical Defense</h4>
+                        <p>Proactive security advisories, vulnerability management, and patch reviews.</p>
+                    </div>
+                    <button class="btn-remove-topic" title="Detach event and remove topic">Remove (.off)</button>
+                </article>
+
+                <article class="topic-card" data-topic="System Design">
+                    <div class="topic-info">
+                        <h4>5. System Design & Scalability</h4>
+                        <p>Patterns for distributed messaging, caching, and microservices.</p>
+                    </div>
+                    <button class="btn-remove-topic" title="Detach event and remove topic">Remove (.off)</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q6. Event Subscription Panel.js"></script>
+</body>
+</html>

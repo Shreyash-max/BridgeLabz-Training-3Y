@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q7 – Search Courses</title>
+    <style>
+        :root {
+            --primary: #2b2d42;
+            --accent: #d90429;
+            --success: #2a9d8f;
+            --highlight: #fff3cd;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #e9ecef;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .search-toolbar {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 1.5rem;
+        }
+        .search-input-group {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .search-input:focus {
+            border-color: var(--success);
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-clear {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-clear:hover {
+            background: #495057;
+        }
+        .counter-badge {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #495057;
+            display: flex;
+            justify-content: space-between;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .course-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .course-card:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .course-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4361ee;
+            margin-bottom: 0.4rem;
+        }
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .course-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #f1f3f5;
+            padding-top: 0.75rem;
+        }
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: #fff;
+            border-radius: 10px;
+            color: #6c757d;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Course Search Platform</h1>
+        <p>Real-time client-side course filtering and dynamic highlight with jQuery</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- Search Toolbar -->
+        <section class="search-toolbar">
+            <div class="search-input-group">
+                <input type="text" id="courseSearchInput" class="search-input" placeholder="Search by course title or keyword (e.g. JavaScript, Python, React)...">
+                <button id="btnClearSearch" class="btn-clear">Clear Search</button>
+            </div>
+            <div class="counter-badge">
+                <span id="matchCounterText">Showing all 6 courses</span>
+                <span>⚡ Real-time .keyup() Search</span>
+            </div>
+        </section>
+
+        <!-- 6 Course Items (satisfies at least 5 items requirement) -->
+        <section class="courses-grid" id="coursesGrid">
+            <!-- Course 1 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">Web Development</div>
+                    <h3 class="course-title">Full-Stack JavaScript Mastery</h3>
+                    <p class="course-desc">Comprehensive curriculum covering modern JavaScript, jQuery DOM manipulation, Node.js, and Express APIs.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 12 Weeks</span>
+                    <span>⭐ 4.9 (1.2k reviews)</span>
+                </div>
+            </article>
+
+            <!-- Course 2 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">Data Science</div>
+                    <h3 class="course-title">Python for Data Science and Machine Learning</h3>
+                    <p class="course-desc">Master data visualization, NumPy, Pandas, Scikit-learn, and deep learning neural architectures.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 16 Weeks</span>
+                    <span>⭐ 4.8 (950 reviews)</span>
+                </div>
+            </article>
+
+            <!-- Course 3 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">Frontend Frameworks</div>
+                    <h3 class="course-title">Modern React, Redux and Next.js Masterclass</h3>
+                    <p class="course-desc">Build scalable production-grade web applications with server-side rendering and state machines.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 10 Weeks</span>
+                    <span>⭐ 4.9 (2.1k reviews)</span>
+                </div>
+            </article>
+
+            <!-- Course 4 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">Algorithms</div>
+                    <h3 class="course-title">Data Structures and Algorithms Bootcamp</h3>
+                    <p class="course-desc">Ace technical interviews with in-depth problem solving in trees, graphs, sorting, and dynamic programming.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 14 Weeks</span>
+                    <span>⭐ 4.7 (800 reviews)</span>
+                </div>
+            </article>
+
+            <!-- Course 5 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">UI / UX Design</div>
+                    <h3 class="course-title">UI/UX Design Systems and Figma Prototyping</h3>
+                    <p class="course-desc">Learn visual hierarchy, wireframing, component libraries, and interactive responsive user testing.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 8 Weeks</span>
+                    <span>⭐ 4.8 (640 reviews)</span>
+                </div>
+            </article>
+
+            <!-- Course 6 -->
+            <article class="course-card">
+                <div>
+                    <div class="course-tag">Cloud & DevOps</div>
+                    <h3 class="course-title">Cloud Native DevOps with Kubernetes and Docker</h3>
+                    <p class="course-desc">Automate deployments with CI/CD GitHub Actions, container orchestration, and multi-region AWS cloud.</p>
+                </div>
+                <div class="course-meta">
+                    <span>⏱️ 12 Weeks</span>
+                    <span>⭐ 4.9 (1.5k reviews)</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- No Results Fallback -->
+        <div id="noResultsMessage" class="no-results">
+            <h3>🔍 No courses found matching your query</h3>
+            <p>Try searching for another keyword or click "Clear Search".</p>
+        </div>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q7. Search Courses.js"></script>
+</body>
+</html>

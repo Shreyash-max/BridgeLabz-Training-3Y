@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2 – Product Highlight</title>
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --accent: #e76f51;
+            --highlight-bg: #e8f4f8;
+            --bg: #f8f9fa;
+            --text: #264653;
+            --card-bg: #ffffff;
+            --border: #e0e0e0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--text);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .instructions-panel {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .instructions-panel ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        /* Click highlight state */
+        .product-card.highlighted {
+            background-color: #d1ecf1 !important;
+            border-color: #17a2b8 !important;
+            transform: scale(1.02);
+        }
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .fav-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            outline: none;
+        }
+        .fav-btn:hover {
+            transform: scale(1.2);
+        }
+        /* Selected Favorite state */
+        .fav-btn.selected {
+            color: #e63946;
+            filter: drop-shadow(0 2px 4px rgba(230, 57, 70, 0.4));
+        }
+        .price-tag {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .badge-stock-in {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-stock-out {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        /* Discounted attribute styling will also be styled dynamically by jQuery */
+        .discount-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #e76f51;
+            margin-bottom: 0.5rem;
+        }
+        .product-details {
+            display: none; /* Initially hidden, revealed on hover via jQuery */
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border);
+            font-size: 0.9rem;
+            color: #555;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Product Highlight Showcase</h1>
+        <p>Interactive E-commerce UI with dynamic hover effects, favorites & attributes</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <section class="instructions-panel">
+            <h3>⚡ Real-World E-commerce Interactions</h3>
+            <ul>
+                <li><strong>Click</strong> any product card to toggle background highlight.</li>
+                <li><strong>Hover</strong> over a product card to expand additional specifications via jQuery.</li>
+                <li><strong>Click the ❤️ icon</strong> to toggle favorite status (adds <code>.selected</code> class).</li>
+                <li><strong>Attribute Selector:</strong> Products with <code>data-discount="true"</code> receive dynamic promotional styling.</li>
+                <li><strong>Data Attribute Alert:</strong> Clicking the out-of-stock product triggers a warning alert.</li>
+            </ul>
+        </section>
+
+        <!-- 5 Product Items with custom data attributes -->
+        <section class="products-grid">
+            <!-- Product 1: Discounted, In Stock -->
+            <article class="product-card" data-stock="in" data-discount="true" data-discount-rate="15%">
+                <div class="product-header">
+                    <h3 class="product-title">Wireless ANC Headphones</h3>
+                    <button class="fav-btn" title="Add to favorites">🤍</button>
+                </div>
+                <div class="price-tag">$199.99</div>
+                <span class="badge badge-stock-in">In Stock</span>
+                <div class="discount-label">Special 15% Discount Available</div>
+                <div class="product-details">
+                    <p>Features 40mm drivers, active noise cancellation, and up to 35 hours of battery playback.</p>
+                </div>
+            </article>
+
+            <!-- Product 2: Discounted, In Stock -->
+            <article class="product-card" data-stock="in" data-discount="true" data-discount-rate="25%">
+                <div class="product-header">
+                    <h3 class="product-title">Smart Fitness Watch</h3>
+                    <button class="fav-btn" title="Add to favorites">🤍</button>
+                </div>
+                <div class="price-tag">$149.99</div>
+                <span class="badge badge-stock-in">In Stock</span>
+                <div class="discount-label">Mega 25% Discount Available</div>
+                <div class="product-details">
+                    <p>AMOLED display, 24/7 heart rate sensor, GPS tracking, and 50m water resistance.</p>
+                </div>
+            </article>
+
+            <!-- Product 3: Regular, In Stock -->
+            <article class="product-card" data-stock="in" data-discount="false">
+                <div class="product-header">
+                    <h3 class="product-title">RGB Mechanical Keyboard</h3>
+                    <button class="fav-btn" title="Add to favorites">🤍</button>
+                </div>
+                <div class="price-tag">$89.99</div>
+                <span class="badge badge-stock-in">In Stock</span>
+                <div class="product-details">
+                    <p>Hot-swappable tactile switches, per-key RGB backlighting, and durable aluminum top plate.</p>
+                </div>
+            </article>
+
+            <!-- Product 4: Regular, Out of Stock -->
+            <article class="product-card" data-stock="out" data-discount="false">
+                <div class="product-header">
+                    <h3 class="product-title">Curved Gaming Monitor</h3>
+                    <button class="fav-btn" title="Add to favorites">🤍</button>
+                </div>
+                <div class="price-tag">$349.99</div>
+                <span class="badge badge-stock-out">Out of Stock</span>
+                <div class="product-details">
+                    <p>34-inch 144Hz WQHD curved display, 1ms response time, and HDR400 certified.</p>
+                </div>
+            </article>
+
+            <!-- Product 5: Discounted, In Stock -->
+            <article class="product-card" data-stock="in" data-discount="true" data-discount-rate="30%">
+                <div class="product-header">
+                    <h3 class="product-title">Ergonomic Office Mouse</h3>
+                    <button class="fav-btn" title="Add to favorites">🤍</button>
+                </div>
+                <div class="price-tag">$49.99</div>
+                <span class="badge badge-stock-in">In Stock</span>
+                <div class="discount-label">Clearance 30% Discount Available</div>
+                <div class="product-details">
+                    <p>Vertical 57-degree natural handshake position to reduce wrist strain during long sessions.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q2. Product Highlight.js"></script>
+</body>
+</html>

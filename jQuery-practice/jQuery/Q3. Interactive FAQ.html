@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 – Interactive FAQ</title>
+    <style>
+        :root {
+            --primary: #1d3557;
+            --primary-hover: #457b9d;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --border: #e2e8f0;
+            --highlight: #fff3cd;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .instructions {
+            background: #eaf4f4;
+            border-left: 4px solid #457b9d;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .instructions ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+        .faq-question .indicator {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            display: none; /* Collapsed by default */
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border);
+            background: #fafbfc;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+        .faq-input-group {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border);
+        }
+        .faq-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+        }
+        .faq-input {
+            width: 100%;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .faq-input:focus {
+            border-color: #457b9d;
+        }
+        .controls-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Interactive FAQ Accordion</h1>
+        <p>Responsive Knowledge Base with dynamic jQuery effects & event handling</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <section class="instructions">
+            <h3>💡 FAQ Interaction Guide:</h3>
+            <ul>
+                <li><strong>Single Click Question:</strong> Toggle visibility of that answer (slide down/up).</li>
+                <li><strong>Hover on Question:</strong> Changes question text color dynamically.</li>
+                <li><strong>Double Click Question:</strong> Collapse all answers on the page at once.</li>
+                <li><strong>Focus in Input Field:</strong> Highlights the parent question with a warm focus color.</li>
+                <li><strong>Blur from Input Field:</strong> Resets the parent question background color.</li>
+            </ul>
+        </section>
+
+        <!-- 5 Interactive FAQ Elements -->
+        <section class="faq-container">
+            <!-- FAQ Item 1 -->
+            <article class="faq-item">
+                <div class="faq-question">
+                    <span>1. What is jQuery and what are its core advantages?</span>
+                    <span class="indicator">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>jQuery is a lightweight, "write less, do more" JavaScript library designed to simplify HTML DOM tree traversal, event handling, CSS animation, and Ajax interactions across various web browsers.</p>
+                    <div class="faq-input-group">
+                        <label for="input-1">Add feedback or note for Question 1:</label>
+                        <input type="text" id="input-1" class="faq-input" placeholder="Type notes here to observe focus event on parent...">
+                    </div>
+                </div>
+            </article>
+
+            <!-- FAQ Item 2 -->
+            <article class="faq-item">
+                <div class="faq-question">
+                    <span>2. How do jQuery Selectors work under the hood?</span>
+                    <span class="indicator">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>jQuery selectors allow you to select and manipulate HTML element(s). They utilize CSS selector syntax (e.g., tag names, classes, IDs, attributes) and integrate seamlessly with native document.querySelectorAll APIs.</p>
+                    <div class="faq-input-group">
+                        <label for="input-2">Add feedback or note for Question 2:</label>
+                        <input type="text" id="input-2" class="faq-input" placeholder="Type notes here to observe focus event on parent...">
+                    </div>
+                </div>
+            </article>
+
+            <!-- FAQ Item 3 -->
+            <article class="faq-item">
+                <div class="faq-question">
+                    <span>3. What is the difference between $(document).ready() and window.onload?</span>
+                    <span class="indicator">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p><code>$(document).ready()</code> triggers as soon as the DOM hierarchy is fully constructed, without waiting for images and stylesheets to load. In contrast, <code>window.onload</code> fires only after the entire page (including external assets) has finished loading.</p>
+                    <div class="faq-input-group">
+                        <label for="input-3">Add feedback or note for Question 3:</label>
+                        <input type="text" id="input-3" class="faq-input" placeholder="Type notes here to observe focus event on parent...">
+                    </div>
+                </div>
+            </article>
+
+            <!-- FAQ Item 4 -->
+            <article class="faq-item">
+                <div class="faq-question">
+                    <span>4. How does event delegation work with jQuery .on()?</span>
+                    <span class="indicator">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Event delegation allows you to attach an event handler to a parent element, which listens for bubbled events triggered by current or future child elements matching a specified selector. This drastically improves memory efficiency and handles dynamically added DOM elements.</p>
+                    <div class="faq-input-group">
+                        <label for="input-4">Add feedback or note for Question 4:</label>
+                        <input type="text" id="input-4" class="faq-input" placeholder="Type notes here to observe focus event on parent...">
+                    </div>
+                </div>
+            </article>
+
+            <!-- FAQ Item 5 -->
+            <article class="faq-item">
+                <div class="faq-question">
+                    <span>5. What are the key built-in animation effects in jQuery?</span>
+                    <span class="indicator">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>jQuery provides built-in visual effect methods including <code>.show()</code>/<code>.hide()</code>, <code>.fadeIn()</code>/<code>.fadeOut()</code>, <code>.slideDown()</code>/<code>.slideUp()</code>, and the versatile <code>.animate()</code> method for custom property transitions.</p>
+                    <div class="faq-input-group">
+                        <label for="input-5">Add feedback or note for Question 5:</label>
+                        <input type="text" id="input-5" class="faq-input" placeholder="Type notes here to observe focus event on parent...">
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <p class="controls-note">💡 Double-click any question bar above to collapse all answers at once.</p>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q3. Interactive FAQ.js"></script>
+</body>
+</html>

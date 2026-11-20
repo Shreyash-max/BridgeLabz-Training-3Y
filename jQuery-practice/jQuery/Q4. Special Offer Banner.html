@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 – Special Offer Banner</title>
+    <style>
+        :root {
+            --primary: #5a189a;
+            --primary-light: #7b2cbf;
+            --accent: #ff9e00;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #240046;
+            --border: #e0aaff;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .controls-toolbar {
+            background: #ffffff;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        button {
+            padding: 0.65rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: var(--primary);
+            color: white;
+        }
+        button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(90, 24, 154, 0.25);
+        }
+        .auto-rotate-indicator {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .timer-badge {
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+        .banners-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .banner-card {
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            color: white;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .banner-card:hover {
+            transform: translateY(-2px);
+        }
+        .banner-1 { background: linear-gradient(135deg, #e63946, #d90429); }
+        .banner-2 { background: linear-gradient(135deg, #4361ee, #3a0ca3); }
+        .banner-3 { background: linear-gradient(135deg, #2a9d8f, #264653); }
+        .banner-4 { background: linear-gradient(135deg, #f77f00, #d62828); }
+        .banner-5 { background: linear-gradient(135deg, #7209b7, #3f37c9); }
+
+        .banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .banner-text h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+        .banner-text p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .banner-cta {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Special Offer Banner Showcase</h1>
+        <p>Dynamic Promotional System powered by jQuery visual effects & animations</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- Interactive Controls Toolbar -->
+        <nav class="controls-toolbar">
+            <button id="btnHideSpecific">1. Hide Banner #2</button>
+            <button id="btnShowAll">2. Show Hidden Banners</button>
+            <button id="btnSlideToggle">3. Slide Toggle Banners</button>
+            <button id="btnFadeToggle">4. Fade In / Fade Out</button>
+            <button id="btnToggleAutoRotate">Pause Auto-Rotate</button>
+        </nav>
+
+        <!-- Status indicator for auto-rotation -->
+        <div class="auto-rotate-indicator">
+            <span>🔄 <strong>5-Second Auto-Rotation:</strong> Cycling through banners automatically via <code>.fadeIn()</code> and <code>.fadeOut()</code></span>
+            <span class="timer-badge" id="activeBannerBadge">Active: Banner #1</span>
+        </div>
+
+        <!-- 5 Promotional Banners -->
+        <section class="banners-container" id="bannerContainer">
+            <!-- Banner 1 -->
+            <article class="banner-card banner-1" id="banner-1" data-index="1">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h3>🔥 Mega Flash Sale: Up to 50% Off Electronics!</h3>
+                        <p>Grab top-tier laptops, wireless audio, and smartphones at unmatched prices.</p>
+                    </div>
+                    <div class="banner-cta">Use Code: FLASH50</div>
+                </div>
+            </article>
+
+            <!-- Banner 2 (Target for specific hide) -->
+            <article class="banner-card banner-2" id="banner-2" data-index="2">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h3>🎓 Exclusive Student Discount: Extra 20% Off!</h3>
+                        <p>Verify your student email and save big on software, tech gear, and books.</p>
+                    </div>
+                    <div class="banner-cta">Use Code: STUDENT20</div>
+                </div>
+            </article>
+
+            <!-- Banner 3 -->
+            <article class="banner-card banner-3" id="banner-3" data-index="3">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h3>🚚 Free Worldwide Express Shipping This Weekend!</h3>
+                        <p>No minimum cart required on all domestic and international shipments.</p>
+                    </div>
+                    <div class="banner-cta">No Code Needed</div>
+                </div>
+            </article>
+
+            <!-- Banner 4 -->
+            <article class="banner-card banner-4" id="banner-4" data-index="4">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h3>🎁 Weekend Special: Buy 1 Get 1 Free on Accessories!</h3>
+                        <p>Mix and match phone cases, braided cables, chargers, and screen protectors.</p>
+                    </div>
+                    <div class="banner-cta">Use Code: BOGO2026</div>
+                </div>
+            </article>
+
+            <!-- Banner 5 -->
+            <article class="banner-card banner-5" id="banner-5" data-index="5">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h3>🍂 New Season Tech Arrivals Just Dropped!</h3>
+                        <p>Discover our newest AI-enhanced smart gadgets, mechanical gear, and wearables.</p>
+                    </div>
+                    <div class="banner-cta">Explore Now</div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q4. Special Offer Banner.js"></script>
+</body>
+</html>
