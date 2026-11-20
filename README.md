@@ -15,6 +15,7 @@ To keep the repository organized, each technology module is maintained in its ow
 | **[`css-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/css-practice)** | 🎨 CSS3 | Styling, responsive UI & layout systems | Box Model, Flexbox, Grid, Media Queries, Animations, Pseudo-classes |
 | **[`bootstrap-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/bootstrap-practice)** | 🚀 Bootstrap 5 | Modern responsive component framework | 12-Column Grid, Cards, Modals, Navbars, Carousels, Utilities |
 | **[`javascript-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/javascript-practice)** | ⚡ JavaScript (ES6+) | Modern client-side logic & OOP | ES6+, Functions, OOP / Classes, DOM Manipulation, Async/Await |
+| **[`jQuery-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/jQuery-practice)** | 🧩 jQuery | Dynamic DOM manipulation, effects & events | Selectors, Event handling, Animations, DOM Traversals, Validation |
 
 ---
 
@@ -44,6 +45,9 @@ git checkout bootstrap-practice
 
 # JavaScript Practice
 git checkout javascript-practice
+
+# jQuery Practice
+git checkout jQuery-practice
 
 # Return to Main
 git checkout main
@@ -85,12 +89,19 @@ Focuses on vanilla JavaScript, modern ECMAScript standards, and programmatic pro
 - **DOM Manipulation**: Event listeners, element querying, dynamic rendering, and interactive UI logic.
 - **Asynchronous Programming**: Promises, `async`/`await`, fetch requests, and the JavaScript event loop.
 
+### 🧩 5. jQuery Practice (`jQuery-practice`)
+Focuses on fast, concise DOM manipulation, animations, event models, and dynamic UI interactions:
+- **Selectors & Traversals**: Element, ID, class, attribute selectors, and hierarchical traversing (`.parent()`, `.children()`, `.find()`, `.next()`).
+- **Event Handling**: Click, hover, double-click, focus/blur, dynamically attached events (`.on()`, `.off()`).
+- **Effects & Animations**: Display toggles (`.hide()`, `.show()`), sliding (`.slideUp()`, `.slideDown()`), and fading (`.fadeIn()`, `.fadeOut()`, `.fadeToggle()`).
+- **DOM Manipulation & Forms**: Dynamic content manipulation (`.append()`, `.prepend()`, `.after()`, `.before()`) and real-time form validation.
+
 ---
 
 ## 💻 Tech Stack
 
 - **Markup & Styling:** HTML5, CSS3, Bootstrap 5
-- **Programming Language:** JavaScript (ES6+)
+- **Programming & Libraries:** JavaScript (ES6+), jQuery
 - **Version Control:** Git & GitHub
 
 ---
