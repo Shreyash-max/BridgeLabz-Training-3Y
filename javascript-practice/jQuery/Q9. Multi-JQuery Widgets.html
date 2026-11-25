@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q9 – Multi-JQuery Widgets</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #047857;
+            --secondary: #6366f1;
+            --secondary-dark: #4338ca;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: #38bdf8;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: var(--text-muted);
+        }
+        main {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .version-legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .version-tag {
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .tag-v1 { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; }
+        .tag-v2 { background: rgba(99, 102, 241, 0.2); border: 1px solid #6366f1; color: #a5b4fc; }
+
+        /* Carousel Section (Managed by Version 1: $jq1) */
+        .carousel-wrapper {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .carousel-viewport {
+            overflow: hidden;
+            position: relative;
+            min-height: 180px;
+        }
+        .carousel-slide {
+            display: none; /* Managed by $jq1 carousel */
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        .carousel-slide h3 {
+            color: #38bdf8;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .carousel-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .carousel-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Widgets Grid (5 widgets) */
+        .widgets-header {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .dashboard-widget {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .dashboard-widget:hover {
+            border-color: #6366f1;
+            transform: translateY(-3px);
+        }
+        /* Active Highlight by Version 1: $jq1 */
+        .dashboard-widget.widget-highlighted {
+            border-color: #10b981 !important;
+            background: #064e3b !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+        }
+        .widget-title {
+            font-size: 1.15rem;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+        .widget-metric {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+        .widget-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Notification Trigger Button (Version 2: $jq2) */
+        .modal-trigger-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        .modal-trigger-btn:hover {
+            background: var(--secondary-dark);
+        }
+
+        /* Modal Popup (Managed by Version 2: $jq2) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background: #1e293b;
+            border: 2px solid #6366f1;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .modal-box h3 {
+            color: #a5b4fc;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .modal-close-btn {
+            background: #e11d48;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Tooltip (Managed by Version 2: $jq2) */
+        .custom-tooltip {
+            position: absolute;
+            background: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid #6366f1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            z-index: 900;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            white-space: nowrap;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <!-- Load jQuery Version 1 (v3.7.1) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // Use noConflict(true) to release BOTH window.$ and window.jQuery for Version 1
+        var $jq1 = jQuery.noConflict(true);
+    </script>
+
+    <!-- Load jQuery Version 2 (v2.2.4) -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        // Use noConflict(true) to release window.$ and window.jQuery for Version 2
+        var $jq2 = jQuery.noConflict(true);
+    </script>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Multi-jQuery Widgets Dashboard</h1>
+        <p>Demonstrating simultaneous co-existence of two jQuery versions via <code>jQuery.noConflict()</code></p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- Architecture Explanation Legend -->
+        <div class="version-legend">
+            <span class="version-tag tag-v1">🟢 Version 1 ($jq1): Carousel Rotation & Widget Highlight</span>
+            <span class="version-tag tag-v2">🟣 Version 2 ($jq2): Modal Popups & Dynamic Tooltips</span>
+        </div>
+
+        <!-- 1. Carousel Slider Section (Requirement 1: Handled by $jq1) -->
+        <section class="carousel-wrapper">
+            <div class="carousel-header">
+                <h3>📊 Live Metric Highlights (Carousel by $jq1)</h3>
+                <span id="slideIndicator" style="font-size: 0.9rem; color: #38bdf8;">Slide 1 of 5</span>
+            </div>
+            <div class="carousel-viewport">
+                <!-- Slide 1 -->
+                <article class="carousel-slide active" data-slide="1">
+                    <h3>⚡ Cloud Computing Throughput</h3>
+                    <p>Current pipeline latency: 24ms &bull; 99.98% successful request deliveries</p>
+                </article>
+                <!-- Slide 2 -->
+                <article class="carousel-slide" data-slide="2">
+                    <h3>👥 Daily Active Developers</h3>
+                    <p>14,820 active sessions logged worldwide today &bull; +18% weekly growth</p>
+                </article>
+                <!-- Slide 3 -->
+                <article class="carousel-slide" data-slide="3">
+                    <h3>🔒 Security Vulnerability Score</h3>
+                    <p>0 critical vulnerabilities &bull; Real-time automated container scan passed</p>
+                </article>
+                <!-- Slide 4 -->
+                <article class="carousel-slide" data-slide="4">
+                    <h3>💾 Distributed Cache Hit Rate</h3>
+                    <p>Redis cluster hit ratio: 94.6% &bull; Average fetch latency: 1.8ms</p>
+                </article>
+                <!-- Slide 5 -->
+                <article class="carousel-slide" data-slide="5">
+                    <h3>📈 API Transaction Volume</h3>
+                    <p>Over 2.4 million daily requests served across 6 multi-region clusters</p>
+                </article>
+            </div>
+            <div class="carousel-controls">
+                <button id="btnPrevSlide" class="carousel-btn">&larr; Previous</button>
+                <button id="btnNextSlide" class="carousel-btn">Next &rarr;</button>
+            </div>
+        </section>
+
+        <!-- 5 Interactive Dashboard Widgets (Requirement 3: Highlight by $jq1, Requirement 4: Tooltip by $jq2) -->
+        <section>
+            <div class="widgets-header">
+                <h3>🖥️ System Widgets (Click to Highlight via $jq1 &bull; Hover for Tooltip via $jq2)</h3>
+            </div>
+            <div class="widgets-grid">
+                <article class="dashboard-widget" data-tooltip="CPU core consumption across all worker nodes">
+                    <h4 class="widget-title">1. CPU Utilization</h4>
+                    <div class="widget-metric">38.4%</div>
+                    <p class="widget-desc">Normal operating parameters</p>
+                </article>
+
+                <article class="dashboard-widget" data-tooltip="RAM footprint across active microservices">
+                    <h4 class="widget-title">2. Memory Usage</h4>
+                    <div class="widget-metric">62.1%</div>
+                    <p class="widget-desc">12.4 GB / 20.0 GB provisioned</p>
+                </article>
+
+                <article class="dashboard-widget" data-tooltip="Network inbound and outbound packet metrics">
+                    <h4 class="widget-title">3. Bandwidth Traffic</h4>
+                    <div class="widget-metric">480 MB/s</div>
+                    <p class="widget-desc">Peak load handled smoothly</p>
+                </article>
+
+                <article class="dashboard-widget" data-tooltip="Real-time SQL & NoSQL queries per second">
+                    <h4 class="widget-title">4. Database QPS</h4>
+                    <div class="widget-metric">1,280/s</div>
+                    <p class="widget-desc">Replica read distribution</p>
+                </article>
+
+                <article class="dashboard-widget" data-tooltip="Application uptime percentage over 90 days">
+                    <h4 class="widget-title">5. System Uptime</h4>
+                    <div class="widget-metric">99.99%</div>
+                    <p class="widget-desc">Zero unplanned downtime</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Modal Trigger Button (Requirement 2: Handled by $jq2) -->
+        <section style="text-align: center; margin-top: 1rem;">
+            <button id="btnOpenNotificationModal" class="modal-trigger-btn">
+                🔔 Launch Notification Modal (Handled by $jq2)
+            </button>
+        </section>
+
+        <!-- Notification Modal Popup (Managed by $jq2) -->
+        <div id="notificationModal" class="modal-overlay">
+            <div class="modal-box">
+                <h3>📢 System Notification</h3>
+                <p>This modal dialog is managed exclusively by <strong>jQuery Version 2 ($jq2)</strong> while the carousel above runs on <strong>jQuery Version 1 ($jq1)</strong> with zero conflicts!</p>
+                <button id="btnCloseModal" class="modal-close-btn">Close Notification</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- Separate JS File containing dual version logic -->
+    <script src="Q9. Multi-JQuery Widgets.js"></script>
+</body>
+</html>

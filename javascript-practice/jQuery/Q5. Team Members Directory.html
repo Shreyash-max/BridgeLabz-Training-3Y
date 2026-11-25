@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q5 – Team Members Directory</title>
+    <style>
+        :root {
+            --primary: #023e8a;
+            --primary-light: #0077b6;
+            --highlight-manager: #caf0f8;
+            --highlight-report: #d8f3dc;
+            --highlight-sibling: #fff3cd;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #1b263b;
+            --border: #dee2e6;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .instructions-card {
+            background: #e3f2fd;
+            border-left: 5px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .instructions-card ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .department {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .department-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .department-header h2 {
+            font-size: 1.4rem;
+        }
+        .toggle-team-btn {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .department-content {
+            padding: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        /* Department highlight via .children() */
+        .department-content.dept-highlight {
+            background-color: #f1f8ff;
+        }
+        .manager-card {
+            background: #f8f9fa;
+            border: 2px solid #0077b6;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .manager-card:hover {
+            background: var(--highlight-manager);
+            transform: translateY(-2px);
+        }
+        .manager-badge {
+            display: inline-block;
+            background: #0077b6;
+            color: white;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+        .reports-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-left: 1.5rem;
+            border-left: 3px solid #dee2e6;
+            padding-left: 1rem;
+        }
+        .employee-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .employee-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #0077b6;
+        }
+        /* Highlight direct reports */
+        .employee-card.highlight-report {
+            background-color: var(--highlight-report) !important;
+            border-color: #52b788 !important;
+        }
+        /* Highlight siblings */
+        .employee-card.sibling-highlight {
+            background-color: var(--highlight-sibling) !important;
+            border-color: #ffc107 !important;
+        }
+        .contact-info {
+            display: none; /* Revealed via .next() on employee hover */
+            background: #eef1f6;
+            padding: 0.75rem 1rem;
+            border-radius: 0 0 8px 8px;
+            font-size: 0.85rem;
+            color: #333;
+            margin-top: -0.5rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid #d0d7de;
+            border-top: none;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Team Members Directory</h1>
+        <p>Hierarchical Corporate Directory demonstrating jQuery DOM Traversals</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <section class="instructions-card">
+            <h3>🔍 Traversing Rules in Action:</h3>
+            <ul>
+                <li><strong>1. Click Manager Card:</strong> Highlights all direct reports under that manager.</li>
+                <li><strong>2. Hover Employee Card:</strong> Reveals contact info using jQuery <code>.next()</code> traversal.</li>
+                <li><strong>3. Click Department Header:</strong> Alters background of all children in that department using <code>.children()</code>.</li>
+                <li><strong>4. Click Employee Card:</strong> Highlights their sibling coworkers using <code>.siblings()</code>.</li>
+                <li><strong>5. Click "Collapse/Expand":</strong> Toggles department visibility using <code>.parent()</code> and <code>.find()</code>.</li>
+            </ul>
+        </section>
+
+        <!-- Department 1: Engineering (1 Manager, 3 Reports) -->
+        <section class="department" id="dept-engineering">
+            <div class="department-header">
+                <h2>💻 Engineering Department</h2>
+                <button class="toggle-team-btn" type="button">Collapse/Expand</button>
+            </div>
+            <div class="department-content">
+                <!-- Manager -->
+                <div class="manager-card" title="Click to highlight direct reports">
+                    <span class="manager-badge">MANAGER</span>
+                    <h3>Sarah Jenkins</h3>
+                    <p>Engineering Director &bull; Leading Core Architecture</p>
+                </div>
+
+                <!-- Reports Group -->
+                <div class="reports-group">
+                    <div>
+                        <article class="employee-card" title="Hover for contact info, Click for siblings">
+                            <h4>Alex Rivera</h4>
+                            <p>Senior Full-Stack Developer</p>
+                        </article>
+                        <div class="contact-info">
+                            <p>📧 alex.rivera@company.com</p>
+                            <p>📞 +1 (555) 234-5678</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <article class="employee-card" title="Hover for contact info, Click for siblings">
+                            <h4>David Kim</h4>
+                            <p>DevOps & Cloud Engineer</p>
+                        </article>
+                        <div class="contact-info">
+                            <p>📧 david.kim@company.com</p>
+                            <p>📞 +1 (555) 345-6789</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <article class="employee-card" title="Hover for contact info, Click for siblings">
+                            <h4>Priya Sharma</h4>
+                            <p>Frontend UI Engineer</p>
+                        </article>
+                        <div class="contact-info">
+                            <p>📧 priya.sharma@company.com</p>
+                            <p>📞 +1 (555) 456-7890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Department 2: Product & Design (1 Manager, 2 Reports) -> Total 6 members (>= 5 elements) -->
+        <section class="department" id="dept-design">
+            <div class="department-header">
+                <h2>🎨 Product & Design Department</h2>
+                <button class="toggle-team-btn" type="button">Collapse/Expand</button>
+            </div>
+            <div class="department-content">
+                <!-- Manager -->
+                <div class="manager-card" title="Click to highlight direct reports">
+                    <span class="manager-badge">MANAGER</span>
+                    <h3>Marcus Vance</h3>
+                    <p>Head of Product Experience &bull; Design Systems</p>
+                </div>
+
+                <!-- Reports Group -->
+                <div class="reports-group">
+                    <div>
+                        <article class="employee-card" title="Hover for contact info, Click for siblings">
+                            <h4>Elena Rostova</h4>
+                            <p>Lead UX Researcher</p>
+                        </article>
+                        <div class="contact-info">
+                            <p>📧 elena.r@company.com</p>
+                            <p>📞 +1 (555) 567-8901</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <article class="employee-card" title="Hover for contact info, Click for siblings">
+                            <h4>Liam Chen</h4>
+                            <p>Visual & Interaction Designer</p>
+                        </article>
+                        <div class="contact-info">
+                            <p>📧 liam.chen@company.com</p>
+                            <p>📞 +1 (555) 678-9012</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q5. Team Members Directory.js"></script>
+</body>
+</html>

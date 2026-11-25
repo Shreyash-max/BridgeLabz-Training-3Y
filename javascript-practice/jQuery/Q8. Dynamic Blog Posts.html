@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q8 – Dynamic Blog Posts</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --border: #e9ecef;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .admin-toolbar {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .buttons-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 0.65rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+        }
+        .btn-append { background-color: #4361ee; }
+        .btn-append:hover { background-color: #3a0ca3; }
+        .btn-prepend { background-color: #7209b7; }
+        .btn-prepend:hover { background-color: #560bad; }
+        .btn-remove { background-color: #e63946; }
+        .btn-remove:hover { background-color: #d90429; }
+        .btn-tags { background-color: #2ec4b6; }
+        .btn-tags:hover { background-color: #208b81; }
+
+        .keyword-search-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            border-top: 1px dashed var(--border);
+            padding-top: 1rem;
+        }
+        .keyword-input {
+            flex: 1;
+            padding: 0.65rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .keyword-input:focus {
+            border-color: var(--primary);
+        }
+        .btn-highlight { background-color: #f72585; }
+        .btn-highlight:hover { background-color: #b5179e; }
+
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .blog-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .blog-card.featured {
+            border-color: #7209b7;
+            background: #faf5ff;
+        }
+        .blog-card.keyword-match {
+            border-color: #f72585 !important;
+            background-color: #fff0f5 !important;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2) !important;
+        }
+        .post-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        .post-excerpt {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        /* Styles for tags inserted via .before() and .after() */
+        .tag-pill-before {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+        }
+        .tag-pill-after {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 0.4rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Dynamic Blog Posts Manager</h1>
+        <p>Admin panel demonstrating jQuery DOM manipulation: <code>.append()</code>, <code>.prepend()</code>, <code>.before()</code>, <code>.after()</code></p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- Admin Controls Toolbar -->
+        <nav class="admin-toolbar">
+            <div class="buttons-row">
+                <button id="btnAppendPost" class="btn-append">➕ Add New Post (.append)</button>
+                <button id="btnPrependPost" class="btn-prepend">⭐ Prepend Featured Post (.prepend)</button>
+                <button id="btnRemoveLast" class="btn-remove">🗑️ Remove Last Post</button>
+                <button id="btnAddTags" class="btn-tags">🏷️ Add Tags (.before / .after)</button>
+            </div>
+            <div class="keyword-search-row">
+                <input type="text" id="keywordInput" class="keyword-input" placeholder="Type keyword to highlight (e.g. JavaScript, CSS, Security)...">
+                <button id="btnHighlight" class="btn-highlight">🔍 Highlight Keyword</button>
+            </div>
+        </nav>
+
+        <!-- 5 Initial Blog Posts -->
+        <section class="posts-container" id="postsContainer">
+            <!-- Post 1 -->
+            <article class="blog-card" id="post-1">
+                <h3 class="post-title">Getting Started with jQuery 3: A Beginner's Guide</h3>
+                <p class="post-excerpt">Learn how jQuery simplifies document traversing, event manipulation, and AJAX across every browser.</p>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-card" id="post-2">
+                <h3 class="post-title">Understanding Asynchronous JavaScript and Promises</h3>
+                <p class="post-excerpt">Master callback queues, macro/micro tasks, and modern async/await syntax to write non-blocking code.</p>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="blog-card" id="post-3">
+                <h3 class="post-title">Mastering CSS Grid vs Flexbox for Responsive Layouts</h3>
+                <p class="post-excerpt">Compare one-dimensional Flexbox containers with two-dimensional CSS Grid systems for optimal web design.</p>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="blog-card" id="post-4">
+                <h3 class="post-title">Building Secure Web Applications: Security Best Practices</h3>
+                <p class="post-excerpt">Protect user data from cross-site scripting (XSS), SQL injection, and insecure direct object references.</p>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="blog-card" id="post-5">
+                <h3 class="post-title">The Future of AI in Modern Software Development</h3>
+                <p class="post-excerpt">Explore how generative models and coding assistants enhance developer velocity and automated testing.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q8. Dynamic Blog Posts.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1 – Welcome Page Greeting</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --success: #2ec4b6;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --text-muted: #6c757d;
+            --border: #e9ecef;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: var(--text-muted);
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.2);
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .hero-banner:hover {
+            transform: translateY(-3px);
+        }
+        .hero-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .hero-banner .hint {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        #welcomeCard {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .features-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .feature-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+        .feature-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Welcome Page Greeting</h1>
+        <p>Dynamic greeting and motivational system built with jQuery</p>
+    </header>
+
+    <!-- Semantic Main Content -->
+    <main>
+        <!-- Dynamic Greeting Section (Clickable for alert) -->
+        <section id="greetingBanner" class="hero-banner" title="Click me for a surprise alert!">
+            <h2 id="greetingText">Welcome to Our Learning Portal!</h2>
+            <p id="greetingSubtext">Loading current time-based message...</p>
+            <div class="hint">💡 Tip: Click anywhere on this greeting card to trigger an alert</div>
+        </section>
+
+        <!-- Controls -->
+        <nav class="controls">
+            <button id="btnChangeGreeting">Change Greeting (Quote)</button>
+            <button id="btnToggleWelcome">Toggle Welcome Card</button>
+            <button id="btnResetGreeting">Reset Greeting</button>
+        </nav>
+
+        <!-- Toggleable Welcome Details Card -->
+        <article id="welcomeCard">
+            <h3>🌟 Daily Visitor Overview</h3>
+            <p>Welcome back! You are exploring jQuery dynamic interactions. Every action on this page is powered by jQuery event handling, animation effects, and DOM manipulation.</p>
+        </article>
+
+        <!-- At least 5 elements/items showcase -->
+        <section class="features-section">
+            <h3>📋 5 Daily Inspiration Highlights</h3>
+            <div class="features-grid">
+                <article class="feature-item">
+                    <h4>1. Stay Focused</h4>
+                    <p>Dedicate uninterrupted time to write clean code.</p>
+                </article>
+                <article class="feature-item">
+                    <h4>2. Learn jQuery</h4>
+                    <p>Write less, do more with clean DOM abstractions.</p>
+                </article>
+                <article class="feature-item">
+                    <h4>3. Practice Daily</h4>
+                    <p>Consistent daily practice transforms beginner into master.</p>
+                </article>
+                <article class="feature-item">
+                    <h4>4. Review Feedback</h4>
+                    <p>Inspect browser console and DOM changes regularly.</p>
+                </article>
+                <article class="feature-item">
+                    <h4>5. Build Projects</h4>
+                    <p>Apply real-world scenarios to consolidate knowledge.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment - 9 &bull; BridgeLabz 3-Year Training Program &bull; jQuery Module</p>
+    </footer>
+
+    <!-- jQuery CDN with local fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
+    <!-- Separate JS File -->
+    <script src="Q1. Welcome Page Greeting.js"></script>
+</body>
+</html>
