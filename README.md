@@ -14,8 +14,7 @@ To keep the repository organized, each technology module is maintained in its ow
 | **[`html-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/html-practice)** | 🌐 HTML5 | Core web structure & semantic markup | Basics, Block/Inline, Tables, Forms, Semantic HTML, Iframes |
 | **[`css-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/css-practice)** | 🎨 CSS3 | Styling, responsive UI & layout systems | Box Model, Flexbox, Grid, Media Queries, Animations, Pseudo-classes |
 | **[`bootstrap-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/bootstrap-practice)** | 🚀 Bootstrap 5 | Modern responsive component framework | 12-Column Grid, Cards, Modals, Navbars, Carousels, Utilities |
-| **[`javascript-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/javascript-practice)** | ⚡ JavaScript (ES6+) | Modern client-side logic & OOP | ES6+, Functions, OOP / Classes, DOM Manipulation, Async/Await |
-| **[`jQuery-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/jQuery-practice)** | 🧩 jQuery | Dynamic DOM manipulation, effects & events | Selectors, Event handling, Animations, DOM Traversals, Validation |
+| **[`javascript-practice`](https://github.com/Shreyash-max/BridgeLabz-Training-3Y/tree/javascript-practice)** | ⚡ JavaScript (ES6+) & jQuery | Modern client-side logic, OOP & jQuery DOM | ES6+, Functions, OOP / Classes, DOM Manipulation, Async/Await, jQuery |
 
 ---
 
@@ -45,9 +44,6 @@ git checkout bootstrap-practice
 
 # JavaScript Practice
 git checkout javascript-practice
-
-# jQuery Practice
-git checkout jQuery-practice
 
 # Return to Main
 git checkout main
@@ -81,20 +77,14 @@ Focuses on rapid UI development using the Bootstrap 5 framework:
 - **Components**: Navbars, alerts, badges, modals, carousels, panels, and progress bars.
 - **Utility Classes**: Spacing (`m-*`, `p-*`), typography, flex utilities, and themes.
 
-### ⚡ 4. JavaScript Practice (`javascript-practice`)
-Focuses on vanilla JavaScript, modern ECMAScript standards, and programmatic problem-solving:
+### ⚡ 4. JavaScript & jQuery Practice (`javascript-practice`)
+Focuses on vanilla JavaScript, modern ECMAScript standards, programmatic problem-solving, and jQuery DOM interactions:
 - **Language Fundamentals**: Variables (`let`, `const`), operators, conditional logic, and loops.
 - **Functions & ES6+**: Arrow functions, destructuring, rest/spread operators, and template literals.
 - **OOP & Classes**: Class syntax, constructor methods, getters/setters, and inheritance.
 - **DOM Manipulation**: Event listeners, element querying, dynamic rendering, and interactive UI logic.
 - **Asynchronous Programming**: Promises, `async`/`await`, fetch requests, and the JavaScript event loop.
-
-### 🧩 5. jQuery Practice (`jQuery-practice`)
-Focuses on fast, concise DOM manipulation, animations, event models, and dynamic UI interactions:
-- **Selectors & Traversals**: Element, ID, class, attribute selectors, and hierarchical traversing (`.parent()`, `.children()`, `.find()`, `.next()`).
-- **Event Handling**: Click, hover, double-click, focus/blur, dynamically attached events (`.on()`, `.off()`).
-- **Effects & Animations**: Display toggles (`.hide()`, `.show()`), sliding (`.slideUp()`, `.slideDown()`), and fading (`.fadeIn()`, `.fadeOut()`, `.fadeToggle()`).
-- **DOM Manipulation & Forms**: Dynamic content manipulation (`.append()`, `.prepend()`, `.after()`, `.before()`) and real-time form validation.
+- **jQuery Library (`jQuery/`)**: Fast concise DOM manipulation, animations (`.slideToggle()`, `.fadeIn()`), event models (`.on()`, `.off()`), traversals (`.next()`, `.children()`, `.find()`), and multi-version `jQuery.noConflict()`.
 
 ---
 
