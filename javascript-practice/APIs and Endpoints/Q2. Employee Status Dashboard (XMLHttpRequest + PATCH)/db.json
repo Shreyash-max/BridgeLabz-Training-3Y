@@ -1,0 +1,40 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Sarah Jenkins",
+      "role": "Lead Architect",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "name": "David Miller",
+      "role": "Frontend Developer",
+      "status": "inactive"
+    },
+    {
+      "id": "3",
+      "name": "Priya Sharma",
+      "role": "Product Manager",
+      "status": "active"
+    },
+    {
+      "id": "4",
+      "name": "Marcus Vance",
+      "role": "DevOps Engineer",
+      "status": "active"
+    },
+    {
+      "id": "5",
+      "name": "Elena Rostova",
+      "role": "UI/UX Designer",
+      "status": "inactive"
+    },
+    {
+      "id": "6",
+      "name": "Liam Chen",
+      "role": "Backend Engineer",
+      "status": "active"
+    }
+  ]
+}

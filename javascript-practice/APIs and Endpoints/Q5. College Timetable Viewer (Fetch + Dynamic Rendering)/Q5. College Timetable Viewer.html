@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q5 – College Timetable Viewer (Fetch + Dynamic Rendering)</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #3b82f6;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #64748b;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .server-badge {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: var(--primary);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .server-badge code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .selector-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .selector-label {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .day-select {
+            padding: 0.7rem 1.25rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text);
+            outline: none;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+        .day-select:focus {
+            border-color: var(--accent);
+        }
+        .timetable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+        .class-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--accent);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease;
+        }
+        .class-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        .subject-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .class-meta {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .class-time {
+            background: #f1f5f9;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 700;
+            color: #0f172a;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        /* No Classes Placeholder */
+        .no-classes-card {
+            display: none;
+            grid-column: 1 / -1;
+            background: #fff;
+            padding: 3.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            color: #64748b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+        .no-classes-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Q5. College Timetable Viewer</h1>
+        <p>Dynamic schedule viewer using <code>Fetch API</code> querying <code>/timetable?day=SelectedDay</code></p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- JSON Server Command Info -->
+        <div class="server-badge">
+            <span>📡 <strong>JSON Server Port:</strong> <code>http://localhost:3005/timetable</code></span>
+            <span>Run: <code>npx json-server --watch db.json --port 3005</code></span>
+        </div>
+
+        <!-- Dropdown for weekdays -->
+        <section class="selector-card">
+            <div class="selector-label">
+                <span>📅 Select Day of the Week:</span>
+            </div>
+            <div>
+                <select id="weekdaySelect" class="day-select">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday (No Classes Demo)</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Timetable Cards Container -->
+        <section class="timetable-grid" id="timetableContainer">
+            <!-- Dynamically populated classes -->
+            <div id="noClasses" class="no-classes-card">
+                <h3>🏖️ No classes today.</h3>
+                <p>Enjoy your break or catch up on coding assignments!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment 10 &bull; APIs and Endpoints &bull; BridgeLabz 3-Year Training Program</p>
+    </footer>
+
+    <!-- Native JavaScript File -->
+    <script src="Q5. College Timetable Viewer.js"></script>
+</body>
+</html>

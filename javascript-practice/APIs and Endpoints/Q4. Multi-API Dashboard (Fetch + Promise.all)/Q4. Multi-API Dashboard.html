@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 – Multi-API Dashboard (Fetch + Promise.all)</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --accent: #7209b7;
+            --success: #2ec4b6;
+            --warning: #f72585;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --border: #e9ecef;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .server-badge {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: var(--primary);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .server-badge code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        /* Warning Banner if ANY API fails */
+        .warning-banner {
+            display: none;
+            background: #fff0f5;
+            border-left: 5px solid var(--warning);
+            color: #c2185b;
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+            position: relative;
+        }
+        .metric-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        .metric-subtitle {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        /* Animated Skeleton Placeholder Shimmer */
+        .skeleton {
+            background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-number {
+            width: 80px;
+            height: 48px;
+            margin: 0.5rem 0;
+        }
+        .skeleton-text {
+            width: 140px;
+            height: 16px;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .btn-reload {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-reload:hover {
+            background: var(--accent);
+        }
+        .btn-simulate-fail {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Q4. Multi-API Dashboard</h1>
+        <p>Parallel API requests with <code>Fetch + Promise.all</code> and animated skeleton loaders</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- JSON Server Command Info -->
+        <div class="server-badge">
+            <span>📡 <strong>JSON Server Port:</strong> <code>http://localhost:3004/{users, orders, products}</code></span>
+            <span>Run: <code>npx json-server --watch db.json --port 3004</code></span>
+        </div>
+
+        <!-- Failure Warning Banner -->
+        <section id="warningBanner" class="warning-banner" aria-live="polite">
+            ⚠️ <strong>Warning:</strong> Some data could not be loaded.
+        </section>
+
+        <!-- 3 Dashboard Metric Cards -->
+        <section class="dashboard-grid">
+            <!-- 1. Total Users -->
+            <article class="metric-card" id="cardUsers">
+                <div class="metric-title">👥 Total Users</div>
+                <div class="metric-value" id="valUsers">
+                    <span class="skeleton skeleton-number"></span>
+                </div>
+                <div class="metric-subtitle" id="subUsers">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+            </article>
+
+            <!-- 2. Total Orders -->
+            <article class="metric-card" id="cardOrders">
+                <div class="metric-title">📦 Total Orders</div>
+                <div class="metric-value" id="valOrders">
+                    <span class="skeleton skeleton-number"></span>
+                </div>
+                <div class="metric-subtitle" id="subOrders">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+            </article>
+
+            <!-- 3. Total Products -->
+            <article class="metric-card" id="cardProducts">
+                <div class="metric-title">🛍️ Total Products</div>
+                <div class="metric-value" id="valProducts">
+                    <span class="skeleton skeleton-number"></span>
+                </div>
+                <div class="metric-subtitle" id="subProducts">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+            </article>
+        </section>
+
+        <div class="controls-row">
+            <button id="btnReload" class="btn-reload">🔄 Reload Dashboard (Promise.all)</button>
+            <button id="btnTestFail" class="btn-simulate-fail">⚡ Simulate Endpoint Failure</button>
+        </div>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment 10 &bull; APIs and Endpoints &bull; BridgeLabz 3-Year Training Program</p>
+    </footer>
+
+    <!-- Native JavaScript File -->
+    <script src="Q4. Multi-API Dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Design REST API schema for auth service",
+      "priority": "High",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Fix responsive navbar layout for mobile screens",
+      "priority": "Low",
+      "completed": false
+    },
+    {
+      "id": "3",
+      "title": "Implement unit tests for checkout payment gateway",
+      "priority": "High",
+      "completed": false
+    },
+    {
+      "id": "4",
+      "title": "Refactor database queries and add indexing",
+      "priority": "Medium",
+      "completed": true
+    },
+    {
+      "id": "5",
+      "title": "Update project API documentation on Postman",
+      "priority": "Low",
+      "completed": false
+    },
+    {
+      "id": "6",
+      "title": "Configure Docker multi-stage container build",
+      "priority": "Medium",
+      "completed": false
+    }
+  ]
+}

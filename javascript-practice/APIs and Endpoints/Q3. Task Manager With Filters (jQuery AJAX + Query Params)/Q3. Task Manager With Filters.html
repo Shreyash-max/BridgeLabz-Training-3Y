@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 – Task Manager With Filters (jQuery AJAX + Query Params)</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --success: #2a9d8f;
+            --priority-high: #e63946;
+            --priority-med: #f77f00;
+            --priority-low: #457b9d;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --border: #dee2e6;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .server-badge {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: var(--primary-dark);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .server-badge code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .filter-toolbar {
+            background: #fff;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .filter-label {
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-select {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.95rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+        .filter-select:focus {
+            border-color: var(--primary);
+        }
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .task-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .task-card:hover {
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+        }
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex: 1;
+        }
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+        .task-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+        .task-title.completed {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+        .priority-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .priority-High { background: #fee2e2; color: var(--priority-high); }
+        .priority-Medium { background: #ffedd5; color: var(--priority-med); }
+        .priority-Low { background: #e0f2fe; color: var(--priority-low); }
+
+        .empty-placeholder {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: #fff;
+            border-radius: 10px;
+            color: #6c757d;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Q3. Task Manager With Filters</h1>
+        <p>Interactive task management with jQuery AJAX query parameters and PATCH requests</p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- JSON Server Command Info -->
+        <div class="server-badge">
+            <span>📡 <strong>JSON Server Port:</strong> <code>http://localhost:3003/tasks</code></span>
+            <span>Run: <code>npx json-server --watch db.json --port 3003</code></span>
+        </div>
+
+        <!-- Filter & Sorting Dropdown Toolbar -->
+        <section class="filter-toolbar">
+            <div class="filter-label">
+                <span>🎯 Filter Tasks:</span>
+            </div>
+            <div>
+                <select id="priorityFilter" class="filter-select">
+                    <option value="all">All Tasks</option>
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="High">High Priority</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Tasks List Container -->
+        <section class="tasks-list" id="tasksContainer">
+            <!-- Dynamically populated by jQuery AJAX -->
+        </section>
+
+        <div id="emptyTasks" class="empty-placeholder">
+            <h3>📭 No tasks found for this filter criteria</h3>
+        </div>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment 10 &bull; APIs and Endpoints &bull; BridgeLabz 3-Year Training Program</p>
+    </footer>
+
+    <!-- jQuery CDN with fallback -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="Q3. Task Manager With Filters.js"></script>
+</body>
+</html>

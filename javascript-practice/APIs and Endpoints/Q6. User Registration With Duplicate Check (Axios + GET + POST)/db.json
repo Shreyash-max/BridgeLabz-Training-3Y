@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "ABC User",
+      "email": "abc@gmail.com",
+      "role": "Beta Tester",
+      "createdAt": "2026-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "Frontend Engineer",
+      "createdAt": "2026-02-10T14:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "name": "Sarah Jenkins",
+      "email": "sarah.j@company.com",
+      "role": "Engineering Lead",
+      "createdAt": "2026-02-22T09:15:00.000Z"
+    },
+    {
+      "id": "4",
+      "name": "Shreyash Rathore",
+      "email": "shreyash@gmail.com",
+      "role": "Full-Stack Developer",
+      "createdAt": "2026-03-01T11:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "name": "Alex Rivera",
+      "email": "alex.r@dev.io",
+      "role": "Product Designer",
+      "createdAt": "2026-03-12T16:20:00.000Z"
+    }
+  ]
+}

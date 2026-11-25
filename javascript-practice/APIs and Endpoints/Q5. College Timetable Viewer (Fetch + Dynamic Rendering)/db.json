@@ -1,0 +1,68 @@
+{
+  "timetable": [
+    {
+      "id": "1",
+      "day": "Monday",
+      "subject": "Data Structures & Algorithms",
+      "faculty": "Dr. Ramesh Verma",
+      "time": "09:00 AM - 10:30 AM",
+      "room": "Lab 301"
+    },
+    {
+      "id": "2",
+      "day": "Monday",
+      "subject": "Web Development & APIs",
+      "faculty": "Prof. Anita Roy",
+      "time": "11:00 AM - 12:30 PM",
+      "room": "Seminar Hall A"
+    },
+    {
+      "id": "3",
+      "day": "Tuesday",
+      "subject": "Database Management Systems",
+      "faculty": "Dr. Sanjay Gupta",
+      "time": "10:00 AM - 11:30 AM",
+      "room": "Room 204"
+    },
+    {
+      "id": "4",
+      "day": "Tuesday",
+      "subject": "Cloud Computing Essentials",
+      "faculty": "Prof. Vikram Malhotra",
+      "time": "01:30 PM - 03:00 PM",
+      "room": "Lab 102"
+    },
+    {
+      "id": "5",
+      "day": "Wednesday",
+      "subject": "Operating Systems & Concurrency",
+      "faculty": "Dr. Ramesh Verma",
+      "time": "09:00 AM - 10:30 AM",
+      "room": "Room 405"
+    },
+    {
+      "id": "6",
+      "day": "Thursday",
+      "subject": "Artificial Intelligence & ML",
+      "faculty": "Dr. Neha Kulkarni",
+      "time": "11:00 AM - 12:30 PM",
+      "room": "AI Research Lab"
+    },
+    {
+      "id": "7",
+      "day": "Friday",
+      "subject": "Software Engineering & Agile",
+      "faculty": "Prof. Anita Roy",
+      "time": "02:00 PM - 03:30 PM",
+      "room": "Room 108"
+    },
+    {
+      "id": "8",
+      "day": "Saturday",
+      "subject": "Open Source Project Mentorship",
+      "faculty": "Guest Mentors",
+      "time": "10:00 AM - 01:00 PM",
+      "room": "Innovation Hub"
+    }
+  ]
+}

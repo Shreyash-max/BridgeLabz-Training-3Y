@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q6 – User Registration With Duplicate Check (Axios + GET + POST)</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --success: #2a9d8f;
+            --danger: #e63946;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --border: #dee2e6;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #6c757d;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .server-badge {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: var(--primary-dark);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .server-badge code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .hint-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 0.9rem 1.25rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: #856404;
+        }
+        .registration-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--text);
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+        /* Duplicate Check Message */
+        .duplicate-error {
+            display: none;
+            color: var(--danger);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0.4rem;
+        }
+        .field-success {
+            display: none;
+            color: var(--success);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.4rem;
+        }
+        .btn-register {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.85rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-register:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.25);
+        }
+        /* Success Message Card */
+        .success-banner {
+            display: none;
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            color: #155724;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+        }
+        .users-table-section {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .users-table-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Semantic Header -->
+    <header>
+        <h1>Q6. User Registration With Duplicate Check</h1>
+        <p>Pre-submission duplicate validation and user creation with <code>Axios (GET + POST)</code></p>
+    </header>
+
+    <!-- Semantic Main -->
+    <main>
+        <!-- JSON Server Command Info -->
+        <div class="server-badge">
+            <span>📡 <strong>JSON Server Port:</strong> <code>http://localhost:3006/users</code></span>
+            <span>Run: <code>npx json-server --watch db.json --port 3006</code></span>
+        </div>
+
+        <div class="hint-box">
+            💡 <strong>Test Duplicate Check:</strong> Try registering with <code>abc@gmail.com</code> or <code>shreyash@gmail.com</code> to trigger the duplicate error message.
+        </div>
+
+        <!-- Success Notification Banner -->
+        <section id="successBanner" class="success-banner" aria-live="polite">
+            <h3>🎉 User Registered Successfully!</h3>
+            <p id="successDetails">The user record has been saved via Axios POST.</p>
+        </section>
+
+        <!-- Registration Form Card -->
+        <section class="registration-card">
+            <form id="userRegistrationForm" novalidate>
+                <div class="form-group">
+                    <label for="userName">Full Name *</label>
+                    <input type="text" id="userName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Email Address *</label>
+                    <input type="email" id="userEmail" class="form-control" placeholder="e.g. abc@gmail.com" required>
+                    <!-- Error: Email already registered -->
+                    <div id="duplicateError" class="duplicate-error">⚠️ Email already registered.</div>
+                    <div id="emailAvailable" class="field-success">✓ Email address is available.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userRole">Assigned Role</label>
+                    <input type="text" id="userRole" class="form-control" placeholder="e.g. Software Developer, Product Analyst" value="Developer">
+                </div>
+
+                <button type="submit" id="btnSubmitUser" class="btn-register">Register User (Axios POST)</button>
+            </form>
+        </section>
+
+        <!-- Registered Users Live Table -->
+        <section class="users-table-section">
+            <h3>👥 Current Registered Users (/users):</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody id="registeredUsersBody">
+                    <tr><td colspan="4" style="text-align:center;">Loading users via Axios GET...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer>
+        <p>Assignment 10 &bull; APIs and Endpoints &bull; BridgeLabz 3-Year Training Program</p>
+    </footer>
+
+    <!-- Axios CDN with fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="Q6. User Registration With Duplicate Check.js"></script>
+</body>
+</html>

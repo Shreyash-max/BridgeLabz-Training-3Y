@@ -1,0 +1,23 @@
+{
+  "users": [
+    { "id": "1", "name": "Alice Johnson", "email": "alice@company.com", "role": "Administrator" },
+    { "id": "2", "name": "Bob Smith", "email": "bob@company.com", "role": "Developer" },
+    { "id": "3", "name": "Charlie Davis", "email": "charlie@company.com", "role": "Product Manager" },
+    { "id": "4", "name": "Diana Prince", "email": "diana@company.com", "role": "UX Designer" },
+    { "id": "5", "name": "Evan Wright", "email": "evan@company.com", "role": "DevOps Engineer" }
+  ],
+  "orders": [
+    { "id": "101", "userId": "1", "total": 249.99, "status": "Shipped" },
+    { "id": "102", "userId": "2", "total": 89.50, "status": "Processing" },
+    { "id": "103", "userId": "3", "total": 450.00, "status": "Delivered" },
+    { "id": "104", "userId": "4", "total": 35.20, "status": "Delivered" },
+    { "id": "105", "userId": "5", "total": 120.00, "status": "Pending" }
+  ],
+  "products": [
+    { "id": "201", "name": "Cloud Subscription Pro", "price": 49.99, "stock": 999 },
+    { "id": "202", "name": "Ergonomic Mechanical Keyboard", "price": 119.00, "stock": 45 },
+    { "id": "203", "name": "Noise Cancelling Headphones", "price": 189.99, "stock": 28 },
+    { "id": "204", "name": "Ultra-HD 4K Display Monitor", "price": 329.50, "stock": 14 },
+    { "id": "205", "name": "USB-C Multi-Port Hub", "price": 29.99, "stock": 150 }
+  ]
+}
